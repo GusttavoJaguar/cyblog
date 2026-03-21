@@ -25,7 +25,7 @@ default: &default
 
 development:
   <<: *default
-  database: cena_livre_development
+  database: cyblog_development
   
   #username: cyberjaguar
   #host: localhost
@@ -35,7 +35,7 @@ development:
   # To create additional roles in PostgreSQL see `$ createuser --help`.
   # When left blank, PostgreSQL will use the default role. This is
   # the same name as the operating system user running Rails.
-  #username: cena_livre
+  #username: cyblog
 
   # The password associated with the PostgreSQL role (username).
   #password: 1235813
@@ -63,7 +63,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: cena_livre_test
+  database: cyblog_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -92,13 +92,13 @@ production:
     
   cache:
     <<: *primary_production
-    database: cena_livre_production_cache
+    database: cyblog_production_cache
     migrations_paths: db/cache_migrate
   queue:
     <<: *primary_production
-    database: cena_livre_production_queue
+    database: cyblog_production_queue
     migrations_paths: db/queue_migrate
   cable:
     <<: *primary_production
-    database: cena_livre_production_cable
+    database: cyblog_production_cable
     migrations_paths: db/cable_migrate
