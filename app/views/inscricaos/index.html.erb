@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<p style="color: green"><%= notice %></p>
+
+    <% content_for :title, "Contatos" %>
+
+    <h1 class="text-center mb-5 pb-2 border-bottom border-success d-inline-block">Entre em contato</h1>
+    <br><br>
+
+    <!-- Renderizando o formulário -->
+    <div id="formulario">
+      <%= render 'form', inscricao: @inscricao %>
+    </div>
+</html>

@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :titulo, "Comentários" %>
+
+<h1 align="center">Comentários Admin</h1>
+<div id="comments">
+  <% @comments.each do |comment| %>
+    <%= simple_format render comment %>
+    
+    <hr class="bg-success">
+    
+  <% end %>
+</div>
+<div class="text-center">
+  <%= link_to "Criar comentário", new_admin_comment_path, class:'text-white btn btn-success p-2' %>
+</div>

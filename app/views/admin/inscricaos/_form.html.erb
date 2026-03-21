@@ -1,0 +1,47 @@
+<%= form_with(model: @inscricao) do |form| %>
+  <% if @inscricao.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@inscricao.errors.count, "error") %> prohibited this inscricao from being saved:</h2>
+
+      <ul>
+        <% @inscricao.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nome, style: "display: block" %>
+    <%= form.textarea :nome %>
+  </div>
+
+  <div>
+    <%= form.label :alcunha, style: "display: block" %>
+    <%= form.textarea :alcunha %>
+  </div>
+
+  <div>
+    <%= form.label :regiao, style: "display: block" %>
+    <%= form.textarea :regiao %>
+  </div>
+
+  <div>
+    <%= form.label :contato, style: "display: block" %>
+    <%= form.textarea :contato %>
+  </div>
+
+  <div>
+    <%= form.label :data_nascimento, style: "display: block" %>
+    <%= form.date_area :data_nascimento %>
+  </div>
+  <br>
+  <div>
+    <%= form.file_area :image %><br>
+  </div>
+  <br>
+  
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

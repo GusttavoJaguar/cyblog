@@ -1,0 +1,151 @@
+<div class=" logo text-center">
+    <a href="<%= root_path %>">
+        <img src="<%= asset_path('logo.jpg') %>" alt="Logo" style="width: 250px; height: auto; border-radius: 50%">
+    </a>
+</div>
+<br><br><br>
+ <!-- Hero Section -->
+        <section class="position-relative mb-5 rounded-3 overflow-hidden" style="height: 500px;">
+            <div class="card border-success position-absolute top-0 start-0 w-100 h-100 bg-transparent bg-opacity-50 z-1"></div>
+            <img src="<%= asset_path('evento.jpg') %>" alt="Street Art" class="w-100 h-100 object-fit-cover">
+            <div class="position-absolute bottom-0 start-0 z-2 p-5">
+                <h1 class="display-3 fw-bold mb-4" style="color: #149414;">CybLog</h1>
+                <p class="fs-4 mb-4 w-75">A plataforma da tecnologia: IA, análise de dados, blockchian e muito mais!</p>
+                <a href="<%== eventos_path %>" class="btn btn-lg px-4 py-2 rounded-pill d-inline-flex align-items-center" style="background-color: #149414; color: white;">
+                    <span>Explorar Eventos</span>
+                    <i data-feather="arrow-right" class="ms-2"></i>
+                </a>
+            </div>
+        </section>
+
+<body>
+
+
+<section id="events" class="mb-5">
+    <h2 class="text-center mb-5 pb-2 border-bottom border-success d-inline-block">Eventos em Destaque</h2>
+    
+    <div class="row g-4">
+        
+        <% @eventos_recentes.each do |evento| %>
+            <div class="col-md-4">
+                <div class="card bg-dark text-white h-100 border border-secondary">
+                    
+                    <% if evento.imagem_evento.attached? %>
+          
+                        <%= image_tag evento.imagem_evento.variant(resize_to_limit: [300, 600]), 
+                                        class: "img-fluid rounded-start", 
+                                        style: "height: 200px; object-fit: cover;", 
+                                        alt: "Imagem de capa do #{evento.nome}" %>
+                        
+                        <% else %>
+                        <div class="bg-secondary d-flex align-items-center justify-content-center rounded-start" 
+                            style="height: 200px; width: 100%;">
+                            <span class="text-white small">Sem imagem</span>
+                        </div>
+                        <% end %>    
+
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2 text-center">
+                            <span class="badge bg-success d-flex align-items-center">
+                                <p class="card-text small mb-1">
+                                    <i class="bi bi-calendar-event"></i> 
+                                    <%= evento.data.strftime("%d/%m/%Y %H:%M") %>
+                                </p>
+                            </span>
+                            
+                            <small class="text-muted"><%= evento.data.strftime("%d/%m/%Y") %></small>
+                        </div>
+                        
+                        <h5 class="card-title"><%= evento.nome %></h5>
+                        <p class="card-text small text-white mb-2">
+            <% 
+              content_pura = evento.descricao
+              
+              content_truncada = truncate(content_pura, 
+                                          length: 50,  # <-- AQUI define o limite de caracteres (~5 linhas)
+                                          separator: ' ', 
+                                          omission: '...')
+            %>
+            
+            <%= simple_format(content_truncada).html_safe %>
+          </p>
+                                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-success"><%= evento.local %></span>
+                            
+                            <a href="<%= evento_path(evento) %>" class="text-primary d-flex align-items-center">
+                                <span>Detalhes</span>
+                                <i data-feather="chevron-right" class="ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+        </div>
+</section> 
+
+
+<!-- Artists Spotlight -->
+        <section class="mb-5">
+            <h2 class="text-center mb-5 pb-2 border-bottom border-success d-inline-block">Tecnologias em Destaque</h2>
+            
+            <div class="row g-4">
+                <!-- Artist 1 -->
+                <div class="col-6 col-md-3 text-center">
+                    <div class="mx-auto mb-3 rounded-circle overflow-hidden border border-success" style="width: 120px; height: 120px;">
+                        <img src="<%= asset_path('mc1.jpg') %>" alt="MC Flow" class="w-100 h-100 object-fit-cover">
+                    </div>
+                    
+                    
+                </div>
+<!-- Artist 2 -->
+                <div class="col-6 col-md-3 text-center">
+                    <div class="mx-auto mb-3 rounded-circle overflow-hidden border border-success" style="width: 120px; height: 120px;">
+                        <img src="<%= asset_path('mc2.jpg') %>" alt="MC Flow" class="w-100 h-100 object-fit-cover">
+                    </div>
+                </div>
+<!-- Artist 3 -->
+<div class="col-6 col-md-3 text-center">
+                    <div class="mx-auto mb-3 rounded-circle overflow-hidden border border-success" style="width: 120px; height: 120px;">
+                        <img src="<%= asset_path('mc3.jpg') %>" alt="MC Flow" class="w-100 h-100 object-fit-cover">
+                    </div>
+                </div>
+<!-- Artist 4 -->
+    <div class="col-6 col-md-3 text-center">
+                    <div class="mx-auto mb-3 rounded-circle overflow-hidden border border-success" style="width: 120px; height: 120px;">
+                        <img src="<%= asset_path('mc4.jpg') %>" alt="MC Flow" class="w-100 h-100 object-fit-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br><br><br>
+    <section id="inscricaos" class="container py-5">
+        <h2 class="text-center mb-5 pb-2 border-bottom border-success d-inline-block">Entre em contato</h2>
+    </section>
+
+     <!-- Newsletter -->
+        <section class="bg-success bg-gradient mb-5 p-5 rounded-3">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 text-center">
+                        <h2 class="mb-3">Fique por dentro da cena!</h2>
+                        <p class="mb-4">Cadastre-se para receber os melhores eventos de arte urbana diretamente no seu email.</p>
+                        <form class="row g-3 justify-content-center">
+                            <div class="col-md-8">
+                                <input type="email" class="form-control form-control-lg" placeholder="Seu melhor email">
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-success btn-lg w-100">
+                                    Assinar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

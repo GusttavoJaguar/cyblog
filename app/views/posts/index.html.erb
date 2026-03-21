@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :titulo, "Posts" %>
+
+<h1 class="text-center mb-5 pb-2 border-bottom border-success d-inline-block">Postagens</h1>
+<br><br>
+
+<div id="posts">
+  <% @posts.each do |post| %>
+    <%= render post %>
+  <% end %>
+</div>

@@ -1,0 +1,56 @@
+<h1 class="text-center mb-5 pb-2 border-bottom border-success d-inline-block"> Postagem </h1>
+
+<br><br>
+
+<div class="card bg-transparent mb-3 text-white p-4">
+
+  <div class="card-body">
+
+    <h2  class="card-title">
+      <%= simple_format @post.titulo %>
+    </h2>
+
+    <div class="card-text" id="post">
+      <%= simple_format @post.conteudo %>
+    </div>
+    <div class="col-md-4 d-flex align-items-center justify-content-center">
+      <% if @post.imagem_capa.attached? %>
+        
+        <%= image_tag @post.imagem_capa.variant(resize_to_limit: [1000, 500]), 
+                      class: "img-fluid rounded-start h-100", 
+                      style: "object-fit: cover;", 
+                      alt: "Imagem de capa do #{@post.titulo}" %>
+        
+      <% else %>
+        <img src="<%= image_path('evento2.jpg') %>" 
+            class="img-fluid rounded-start h-100" 
+            alt="Imagem indisponível">
+      <% end %>
+    </div><br><br>
+</div>
+<br><br>
+<div class="text-center">
+    <%= link_to "Voltar", posts_path, class:'text-white btn btn-primary p-2' %>
+  </div>
+</div>
+
+  <br>
+  <br>
+  <br>
+
+<h1>Comentários</h1>
+<hr class="bg-success"/>
+<br>
+
+<div id="comments">
+  <% if @post.comments.any? %>
+    <%= render :partial => "comments/comment", collection: @post.comments %>
+  <% else %>
+    <p>Ainda não há comentários.</p>
+  <% end %>
+</div>
+<br>
+<br>
+<%= render "comments/form", post: @post, comment: Comment.new, class: "new_comment", id: "new_comment", as: :comment %>
+
+

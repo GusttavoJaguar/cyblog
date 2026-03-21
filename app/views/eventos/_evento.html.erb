@@ -1,0 +1,72 @@
+<div id="<%= dom_id evento %>" class="col"> <%# Adicionei 'col' para funcionar com o row-cols do index %>
+<br>  
+<div class="card bg-transparent mb-3 p-4 h-100">
+    
+    <div class="row g-0 align-items-center"> <%# Adicionei align-items-center para alinhar o conteúdo verticalmente %>
+
+      <div class="col-md-4 d-flex align-items-center justify-content-center">
+        <% if evento.imagem_evento.attached? %>
+          
+          <%= image_tag evento.imagem_evento.variant(resize_to_limit: [300, 600]), 
+                        class: "img-fluid rounded-start", 
+                        style: "object-fit: cover;",
+                        alt: "Imagem de capa do #{evento.nome}" %>
+          
+        <% else %>
+          <div class="bg-secondary d-flex align-items-center justify-content-center rounded-start" 
+               style="height: 200px; width: 100%;">
+            <span class="text-white small">Sem imagem</span>
+          </div>
+        <% end %>
+      </div>
+      
+      <div class="col-md-8">  
+        <div class="card-body text-white p-2"> 
+
+          <h4 class="card-title mb-2">
+            <%= link_to evento.nome, evento %>
+          </h4>
+
+          <p class="card-text small text-white mb-2">
+            <% 
+              content_pura = evento.descricao
+              
+              content_truncada = truncate(content_pura, 
+                                          length: 150,  # <-- AQUI define o limite de caracteres (~5 linhas)
+                                          separator: ' ', 
+                                          omission: '...')
+            %>
+            
+            <%= simple_format(content_truncada).html_safe %>
+          </p>
+          
+
+          <p class="card-text small mb-1">
+            <i class="bi bi-calendar-event"></i> 
+            Data do Evento: <%= evento.data.strftime("%d/%m/%Y %H:%M") %>
+          </p>
+
+          
+          <p class="card-text small mb-1">
+            <i class="bi bi-geo-alt-fill"></i> Local: <%= evento.local %>
+          </p>
+          
+          <% if evento.link_ingresso.present? %>
+            <p class="card-text small mb-1">
+              <i class="bi bi-ticket-fill"></i> <b><%= link_to "Link do ingresso", evento.link_ingresso, target: "_blank" %></b>
+            </p>
+          <% end %>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="mt-3 text-center">
+      <%= link_to "Acessar evento", evento, class: 'text-white btn btn-primary btn-sm' %> 
+    </div>
+    
+  </div>
+  <br> <br>
+<hr class="border-warning my-2">
+</div>
+

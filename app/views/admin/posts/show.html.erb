@@ -1,0 +1,46 @@
+  <div class="card text-bg-dark bg-transparent border-warning mb-3">
+    <div class="card-body text-white ">
+  <h2><%= @post.titulo %></h2>
+
+    <div id="post">
+      <%= simple_format @post.conteudo %>
+    </div>
+
+    <div class="col-md-4">
+      <% if @post.imagem_capa.attached? %>
+        
+        <%= image_tag @post.imagem_capa.variant(resize_to_limit: [1000, 500]), 
+                      class: "img-fluid rounded-start h-100", 
+                      style: "object-fit: cover;", 
+                      alt: "Imagem de capa do #{@post.titulo}" %>
+        
+      <% else %>
+        <img src="<%= image_path('evento2.jpg') %>" 
+            class="img-fluid rounded-start h-100" 
+            alt="Imagem indisponível">
+      <% end %>
+    </div>
+<br><br>
+  <div class="text-center">
+    <%= link_to "Editar", edit_admin_post_path(@post), class:'text-white btn btn-secondary p-2' %> <br><br>
+    <%= link_to "Mostrar todos", admin_posts_path, class:'text-white btn btn-primary p-2' %>
+  </div>
+  <br>
+<div class="text-center">
+  <%= button_to "Apagar", @post, method: :delete , class:'text-white btn btn-success p-2', 
+  data: { confirm: "Você tem certeza?" } %>
+</div>
+  </div>
+</div>
+
+    <hr/>
+
+<h3>Comentários Admin</h3>
+<div id="comment">
+  <% if @post.comments.any? %>
+    <%= render partial: "admin/comments/comment", collection: @post.comments %>
+  <% else %>
+    <p>Ainda não há comentários.</p>
+  <% end %>
+</div>
+<%= render "comments/form", post: @post, comment: Comment.new, class: "new_comment", id: "new_comment", as: :comment %>

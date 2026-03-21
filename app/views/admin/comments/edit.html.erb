@@ -1,0 +1,25 @@
+<h2>Editar Comentário</h2>
+
+<%= form_with model: [:admin, @comment], local: true do |f| %>
+  <div class="mb-3">
+    <%= f.label :author %>
+    <%= f.text_field :author, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :email %>
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :url %>
+    <%= f.url_field :url, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :body %>
+    <%= f.text_area :body, rows: 6, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Salvar", class: "btn btn-primary" %>
+  <%= link_to "Voltar", admin_post_path(@comment.post), class: "btn btn-secondary ms-2" %>
+<% end %>

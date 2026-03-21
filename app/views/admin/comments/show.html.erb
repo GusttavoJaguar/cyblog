@@ -1,0 +1,22 @@
+  <div class="card text-bg-dark border-warning mb-3" style="max-width: 18rem;">
+  <h2><%= @comment.author %></h2>
+
+    <div id="admin_comment_body">
+      <%= simple_format @admin_comment %>
+    </div>
+  
+  </div>
+    <hr/>
+
+<h3>Comentário</h3>
+
+<p><strong>Autor:</strong> <%= @comment.author %></p>
+<p><strong>Email:</strong> <%= @comment.email %></p>
+<p><strong>URL:</strong> <%= @comment.url %></p>
+<p><strong>Comentário:</strong> <%= @comment.body %></p>
+
+<div class="text-center">
+  <%= button_to "Apagar", @post, method: :delete , class:'text-white btn btn-success p-2', 
+  data: { confirm: "Você tem certeza?" } %>
+</div>
+

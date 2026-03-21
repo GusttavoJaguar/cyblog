@@ -1,0 +1,43 @@
+<div id="<%= dom_id post %>">
+  <div class="card text-bg-dark bg-transparent border-warning mb-3 h-100">
+    <div class="card-body text-warning ">
+      <h4>
+        <%= link_to post.titulo, admin_post_path(post) %>
+      </h4>
+      <div class="text-muted">
+        <em> Por <%= post.conteudo %></em>
+      </div>
+
+
+      <em><%= post.created_at.strftime("%d/%m/%Y") %></em>
+
+      <br>
+
+      <p class="text-muted"><%= post.comments.count %> comentários</p>
+      
+
+      <div class="col-md-4">
+      <% if post.imagem_capa.attached? %>
+        
+        <%= image_tag post.imagem_capa.variant(resize_to_limit: [1000, 500]), 
+                      class: "img-fluid rounded-start h-100", 
+                      style: "object-fit: cover;", 
+                      alt: "Imagem de capa do #{post.titulo}" %>
+        
+      <% else %>
+        <img src="<%= image_path('evento2.jpg') %>" 
+            class="img-fluid rounded-start h-100" 
+            alt="Imagem indisponível">
+      <% end %>
+    </div>
+
+      <div class="d-flex justify-content-right gap-2">
+        <%= link_to "Ler artigo", admin_post_path(post), class: 'text-white btn btn-primary p-2' %> 
+        <%= link_to "Editar", edit_post_path(post), class: 'text-white btn btn-secondary p-2' %> 
+        <%= link_to "Apagar", admin_post_path(post), method: :delete , class:'text-white btn btn-success p-2', 
+        data: { confirm: "Você tem certeza?" } %> 
+      </div>
+
+    </div>
+  </div>
+</div>

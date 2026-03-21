@@ -1,0 +1,62 @@
+<h1 class="text-center mb-5 pb-2 border-bottom border-success d-inline-block"> Evento </h1>
+
+<br><br>
+
+<div class="card bg-transparent mb-3 text-white p-4">
+
+  <div class="card-body">
+    
+    <div class="row g-0">
+        
+<div class="col-md-4 d-flex align-items-center justify-content-center">            
+        <% if @evento.imagem_evento.attached? %>
+                
+                <%# A classe 'h-100' fará a imagem tentar preencher a altura da coluna %>
+                <%== image_tag @evento.imagem_evento.variant(resize_to_limit: [1000, 500]),
+                              class: "img-fluid rounded-start", 
+                              style: "max-height: 400px; object-fit: cover;", 
+                              alt: "Imagem de capa do #{@evento.nome}" %>
+                
+            <% else %>
+                <p>Deu merda na imagem</p>
+            <% end %>
+        </div>
+        
+        <div class="col-md-8 ps-md-4">
+            
+            <h2 class="card-title">
+              <%== @evento.nome %>
+            </h2>
+
+            <div class="card-text">
+              <%== simple_format (@evento.descricao) %>
+            </div>
+            
+            <hr class="border-success">
+            
+            <div class="card-text">
+              <i class="bi bi-geo-alt-fill"></i> 
+              <%== @evento.local %>
+            </div>
+            <div class="card-text">
+              <i class="bi bi-calendar-event"></i> 
+              <%== @evento.data.strftime("%d/%m/%Y %H:%M") %>
+            </div>
+            <div class="card-text">
+              <% if @evento.link_ingresso.present? %>
+                <i class="bi bi-ticket-fill"></i> 
+                <%== link_to "Compre seu Ingresso", @evento.link_ingresso, target: "_blank" %>
+              <% end %>
+            </div>
+            <br>
+        </div>
+        
+        </div>
+    </div>
+
+<div class="text-center">
+    <a href='/inscricaos' class="btn btn-success btn-lg">Entre em contato</a>
+    <br><br>
+    <%= link_to "Voltar", eventos_path, class:'text-white btn btn-primary p-2' %>
+  </div>
+</div>
