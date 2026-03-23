@@ -42,6 +42,23 @@ a:hover {
     transform: scale(1.05);
 }
 
+
+.col-6 {
+    transition: 0.5s;
+}
+
+.col-6:hover {
+    transform: translateY(-10px);
+}
+
+
+.col-md-8 {
+    transition: 0.5s;
+}
+.col-md-8:hover {
+    transform: translateY(-10px);
+}
+
 .logo {
     margin-top: 20px;
     margin-bottom: 20px;
