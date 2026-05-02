@@ -77,3 +77,7 @@ gem 'rake', '>= 13.2.1'
 
 gem 'zeitwerk', '~> 2.7', '>= 2.7.2'
 gem "cloudinary", "~> 2.4"
+
+gem 'rails-i18n'
+gem 'friendly_id', '~> 5.5.0'
+gem 'pg_search'

@@ -27,5 +27,18 @@
 #       "yes": yup
 #       enabled: "ON"
 
-en:
-  hello: "Hello world"
+pt-BR:
+  activerecord:
+    models:
+      post: 'Post'
+      comments: 'Comentário'
+
+    attributes:
+      post: 
+        title: 'Titulo'
+        author: 'Autor'
+        body: 'Texto'
+
+      comment:
+        author: 'Autor'
+        body: 'Texto'
